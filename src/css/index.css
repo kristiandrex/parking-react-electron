@@ -1,0 +1,33 @@
+:root {
+	--primary: #3f51b5;
+	--light: #757de8;
+}
+
+html,
+body,
+#root,
+#App {
+	height: 100%;
+	overflow: hidden;
+}
+
+.input-field input {
+	color: #fff !important;
+	border-bottom-color: #fff !important;
+}
+
+.input-field input:focus {
+	box-shadow: 0 1px 0 0 #fff !important;
+}
+
+.input-field label {
+	color: #fff !important;
+}
+
+.input-field i {
+	color: #fff !important;
+}
+
+.btn {
+	font-weight: bold;
+}

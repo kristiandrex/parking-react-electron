@@ -1,0 +1,13 @@
+#list-vehicles {
+    height: 100%; 
+    overflow-y: auto;
+}
+
+#list-vehicles table thead tr th,
+#list-vehicles table tbody tr td {
+    text-align: center !important;
+}
+
+#list-vehicles table td i.clear {
+    cursor: pointer;
+}
