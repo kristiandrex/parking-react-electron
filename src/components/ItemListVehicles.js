@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StorageContext } from "./App";
+import React, { useEffect } from "react";
 import usePrice from "../hooks/usePrice";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export default function ItemListVehicles(props) {
-	const { vehicles, setVehicles } = useContext(StorageContext);
-
-	const [seconds, setSeconds] = useState(props.vehicle.seconds || 0);
+	const [{ seconds }, setSeconds] = useLocalStorage(props.vehicle.vehicleID, { seconds: 0 });
 	const minutes = parseInt(seconds / 60);
 	const hours = parseInt(minutes / 60);
 
@@ -13,17 +11,8 @@ export default function ItemListVehicles(props) {
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			setSeconds(seconds + 1);
+			setSeconds({ seconds: seconds + 1 });
 			setPrice(minutes, hours);
-
-			let vehicle = vehicles.find(
-				(vehicleStored) => vehicleStored.vehicleID === props.vehicle.vehicleID
-			);
-
-			vehicle.seconds = seconds + 1;
-			vehicle.price = price;
-
-			setVehicles(vehicles);
 		}, 1000);
 
 		return () => clearInterval(timer);
@@ -52,7 +41,10 @@ export default function ItemListVehicles(props) {
 				<i
 					className="material-icons clear"
 					style={{ verticalAlign: "middle" }}
-					onClick={() => props.removeVehicle(props.vehicle.vehicleID)}
+					onClick={() => {
+						props.removeVehicle(props.vehicle.vehicleID, price);
+						localStorage.removeItem(props.vehicle.vehicleID);
+					}}
 				>
 					clear
 				</i>

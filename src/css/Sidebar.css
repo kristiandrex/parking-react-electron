@@ -50,13 +50,3 @@
 	width: 50%;
 	text-align: center;
 }
-
-#sidebar .btn-register {
-	color: var(--primary);
-	background: #fff;
-}
-
-#sidebar .btn-incomes {
-	color: #fff;
-	background: var(--light);
-}

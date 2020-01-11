@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
-import { StorageContext } from "../components/App";
+import { GeneralContext } from "../components/App";
 
 export default function usePrice(type, minutes, hours) {
-	const { config } = useContext(StorageContext);
+	const { config } = useContext(GeneralContext);
 	const defaultPrice = type === "CAR" ? config.priceCars : config.priceMotorcycles;
 
 	const [state, setState] = useState(() => {

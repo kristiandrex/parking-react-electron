@@ -10,7 +10,7 @@ export default function useLocalStorage(key, initialValue) {
 		}
 	});
 
-	const setValue = (value) => {
+	const setValue = value => {
 		setStoredValue(value);
 		localStorage.setItem(key, JSON.stringify(value));
 	};

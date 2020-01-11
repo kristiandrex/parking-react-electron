@@ -1,9 +1,17 @@
 import React from "react";
-import "../css/ModalConfig.css";
+import Modal from "./Modal";
 
 export default function ModalConfig(props) {
-	const saveConfig = (e) => {
+	const saveConfig = e => {
 		e.preventDefault();
+
+		const inputs = e.target.querySelectorAll("input[type='number']");
+
+		for (let index = 0; index < inputs.length; index++) {
+			if (inputs[index].value.trim() === "") {
+				return alert("Rellene todos los campos");
+			}
+		}
 
 		const config = {
 			priceCars: e.target.price_car.value,
@@ -14,43 +22,96 @@ export default function ModalConfig(props) {
 		};
 
 		props.setConfig(config);
+		props.setShow(false);
 	};
 
 	return (
-		<div className="col s6 push-s3 modal-config-wrapper">
-			<form className="modal-config" onSubmit={saveConfig}>
-				<div className="row">
-					<div className="input-field col s6">
-						<input id="price_car" name="price_car" type="number" />
-						<label htmlFor="price_car">Precio automóvil</label>
+		props.show && (
+			<Modal>
+				<form onSubmit={saveConfig}>
+					<div className="row">
+						<div className="input-field col s6">
+							<input
+								id="price_car"
+								name="price_car"
+								type="number"
+								defaultValue={props.config.priceCars}
+							/>
+							<label
+								htmlFor="price_car"
+								className={props.config.priceCars ? "active" : null}
+							>
+								Precio automóvil
+							</label>
+						</div>
+						<div className="input-field col s6">
+							<input
+								id="price_motorcycle"
+								name="price_motorcycle"
+								type="number"
+								defaultValue={props.config.priceMotorcycles}
+							/>
+							<label
+								htmlFor="price_motorcycle"
+								className={props.config.priceMotorcycles ? "active" : null}
+							>
+								Precio motocicleta
+							</label>
+						</div>
 					</div>
-					<div className="input-field col s6">
-						<input id="price_motorcycle" name="price_motorcycle" type="number" />
-						<label htmlFor="price_motorcycle">Precio motocicleta</label>
+					<div className="row">
+						<div className="input-field col s6 push-s3">
+							<input
+								type="number"
+								id="required_time"
+								name="required_time"
+								defaultValue={props.config.requiredTime}
+							/>
+							<label
+								htmlFor="required_time"
+								className={props.config.requiredTime ? "active" : null}
+							>
+								Tiempo mínimo
+							</label>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="input-field col s6 push-s3">
-						<input type="number" id="required_time" name="required_time" />
-						<label htmlFor="required_time">Tiempo mínimo</label>
+					<div className="row">
+						<div className="input-field col s6">
+							<input
+								id="spaces_cars"
+								name="spaces_cars"
+								type="number"
+								defaultValue={props.config.spacesCars}
+							/>
+							<label
+								htmlFor="spaces_cars"
+								className={props.config.spacesCars ? "active" : null}
+							>
+								Espacios automóvil
+							</label>
+						</div>
+						<div className="input-field col s6">
+							<input
+								id="spaces_motorcycles"
+								name="spaces_motorcycles"
+								type="number"
+								defaultValue={props.config.spacesMotorcycles}
+							/>
+							<label
+								htmlFor="spaces_motorcycles"
+								className={props.config.spacesMotorcycles ? "active" : null}
+							>
+								Espacios motocicleta
+							</label>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="input-field col s6">
-						<input id="spaces_cars" name="spaces_cars" type="number" />
-						<label htmlFor="spaces_cars">Espacios automóvil</label>
+					<div className="row" style={{ marginBottom: 0 }}>
+						<button className="waves-effect waves-light btn white">
+							<i className="material-icons right">check</i>Guardar
+						</button>
 					</div>
-					<div className="input-field col s6">
-						<input id="spaces_motorcycles" name="spaces_motorcycles" type="number" />
-						<label htmlFor="spaces_motorcycles">Espacios motocicleta</label>
-					</div>
-				</div>
-				<div className="row">
-					<button className="waves-effect waves-light btn">
-						<i className="material-icons right">check</i>Guardar
-					</button>
-				</div>
-			</form>
-		</div>
+				</form>
+			</Modal>
+		)
 	);
 }

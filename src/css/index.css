@@ -28,6 +28,24 @@ body,
 	color: #fff !important;
 }
 
-.btn {
+.btn,
+.btn-flat {
 	font-weight: bold;
+}
+
+.btn.white,
+.btn-flat.white {
+	color: var(--primary);
+}
+
+.btn.light,
+.btn-flat.light {
+	background: var(--light);
+	color: #fff;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }

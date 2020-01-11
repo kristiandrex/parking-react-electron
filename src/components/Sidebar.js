@@ -1,21 +1,32 @@
 import React, { useContext } from "react";
 import "../css/Sidebar.css";
-import { StorageContext } from "./App";
+import { GeneralContext } from "./App";
 import { findVehicle } from "../utils/utils";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
 	const {
 		vehicles,
 		setVehicles,
-		config,
 		countCars,
 		setCountCars,
 		countMotorcycles,
 		setCountMotorcycles
-	} = useContext(StorageContext);
+	} = useContext(GeneralContext);
 
-	const addVehicle = (e) => {
+	const addVehicle = e => {
 		e.preventDefault();
+
+		if (e.target.typeVehicle.value === "") {
+			return props.showToast("Seleccione el tipo de vehículo");
+		}
+
+		const inputs = e.target.querySelectorAll("input[type='text'], input[type='number']");
+
+		for (let index = 0; index < inputs.length; index++) {
+			if (inputs[index].value.trim() === "") {
+				return props.showToast("Rellene todos los campos");
+			}
+		}
 
 		const vehicle = {
 			type: e.target.typeVehicle.value,
@@ -23,20 +34,22 @@ export default function Sidebar() {
 			owner: e.target.owner.value,
 			ownerID: e.target.ownerID.value,
 			phone: e.target.phone.value,
-			seconds: 0,
 			price: 0
 		};
 
 		if (findVehicle(vehicles, vehicle.vehicleID) !== -1) {
-			return alert("Vehículo ya registrado");
+			return props.showToast("Vehículo ya registrado");
 		}
 
-		if (vehicle.type === "CAR" && countCars < config.spacesCars) {
+		if (vehicle.type === "CAR" && countCars < props.config.spacesCars) {
 			setCountCars(countCars + 1);
-		} else if (vehicle.type === "MOTORCYCLE" && countMotorcycles < config.spacesMotorcycles) {
+		} else if (
+			vehicle.type === "MOTORCYCLE" &&
+			countMotorcycles < props.config.spacesMotorcycles
+		) {
 			setCountMotorcycles(countMotorcycles + 1);
 		} else {
-			return alert("No hay espacio");
+			return props.showToast("No hay espacio");
 		}
 
 		setVehicles([vehicle, ...vehicles]);
@@ -45,27 +58,28 @@ export default function Sidebar() {
 
 	return (
 		<div id="sidebar" className="col s4">
-			<form onSubmit={addVehicle}>
+			<form onSubmit={addVehicle} style={{ width: "100%" }}>
 				<div className="section" style={{ paddingTop: 0 }}>
-					<input type="radio" name="typeVehicle" value="CAR" required id="type-car" />
+					<input type="radio" name="typeVehicle" value="CAR" id="type-car" />
 					<label htmlFor="type-car" className="btn btn-type btn waves-effect waves-light">
-						<i className="material-icons">directions_car</i>${config.priceCars}
+						<i className="material-icons">directions_car</i>${props.config.priceCars}
 					</label>
 					<input
 						type="radio"
 						name="typeVehicle"
 						value="MOTORCYCLE"
 						id="type-motorcycle"
-						required
 					/>
 					<label
 						htmlFor="type-motorcycle"
 						className="btn btn-type btn waves-effect waves-light"
 					>
-						<i className="material-icons">motorcycle</i>${config.priceMotorcycles}
+						<i className="material-icons">motorcycle</i>${props.config.priceMotorcycles}
 					</label>
 				</div>
-				<div className="required-time">Precio mínimo: {config.requiredTime} minutos</div>
+				<div className="required-time">
+					Precio mínimo: {props.config.requiredTime} minutos
+				</div>
 				<div className="input-field">
 					<i className="material-icons prefix">money</i>
 					<input
@@ -73,7 +87,6 @@ export default function Sidebar() {
 						id="vehicle-id"
 						style={{ textTransform: "uppercase" }}
 						name="vehicleID"
-						required
 					/>
 					<label htmlFor="vehicle-id">Placa:</label>
 				</div>
@@ -84,18 +97,17 @@ export default function Sidebar() {
 						id="owner"
 						style={{ textTransform: "capitalize" }}
 						name="owner"
-						required
 					/>
 					<label htmlFor="owner">Propietario:</label>
 				</div>
 				<div className="input-field">
 					<i className="material-icons prefix">fingerprint</i>
-					<input type="text" id="owner-id" name="ownerID" required />
+					<input type="text" id="owner-id" name="ownerID" />
 					<label htmlFor="owner-id">Identificación:</label>
 				</div>
 				<div className="input-field">
 					<i className="material-icons prefix">phone</i>
-					<input type="text" id="phone" name="phone" required />
+					<input type="number" id="phone" name="phone" />
 					<label htmlFor="phone">Teléfono:</label>
 				</div>
 				<table className="parking-spaces">
@@ -105,34 +117,40 @@ export default function Sidebar() {
 							<td>
 								<i className="material-icons">directions_car</i>
 							</td>
-							<td id="cars-parking-spaces">{config.spacesCars - countCars}</td>
+							<td id="cars-parking-spaces">{props.config.spacesCars - countCars}</td>
 						</tr>
 						<tr>
 							<td>
 								<i className="material-icons">motorcycle</i>
 							</td>
 							<td id="motorcycles-parking-spaces">
-								{config.spacesMotorcycles - countMotorcycles}
+								{props.config.spacesMotorcycles - countMotorcycles}
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<div className="section" style={{ paddingBottom: 0 }}>
-					<button
-						type="submit"
-						className="btn waves-effect btn-register"
-						style={{ margin: "0 1rem" }}
-					>
+				<div
+					className="section"
+					style={{ paddingBottom: 0, display: "flex", justifyContent: "space-between" }}
+				>
+					<button type="submit" className="btn waves-effect white">
 						Registrar
 						<i className="material-icons right">done</i>
 					</button>
 					<button
 						type="button"
-						className="waves-effect waves-light btn btn-flat btn-incomes"
-						style={{ margin: "0 1rem" }}
+						className="waves-effect waves-light btn-flat light"
+						onClick={() => props.setShowIncomes(true)}
 					>
 						Recaudado
 						<i className="material-icons right">assignment</i>
+					</button>
+					<button
+						type="button"
+						className="btn-flat light waves-effect waves-light"
+						onClick={() => props.setShowConfig(true)}
+					>
+						<i className="material-icons">build</i>
 					</button>
 				</div>
 			</form>

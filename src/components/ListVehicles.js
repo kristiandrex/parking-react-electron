@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import ItemListVehicles from "./ItemListVehicles";
-import { StorageContext } from "./App";
+import { GeneralContext } from "./App";
 import { findVehicle } from "../utils/utils";
 import "../css/ListVehicles.css";
 
-export default function ListVehicles() {
+export default function ListVehicles(props) {
 	const {
 		vehicles,
 		setVehicles,
@@ -12,16 +12,17 @@ export default function ListVehicles() {
 		setCountCars,
 		countMotorcycles,
 		setCountMotorcycles
-	} = useContext(StorageContext);
+	} = useContext(GeneralContext);
 
-	const removeVehicle = (vehicleID) => {
+	const removeVehicle = (vehicleID, price) => {
 		const index = findVehicle(vehicles, vehicleID);
-		const type = vehicles[index].type;
 
-		if (type === "CAR") {
+		if (vehicles[index].type === "CAR") {
 			setCountCars(countCars - 1);
+			props.setIncomesCars(props.incomesCars + price);
 		} else {
 			setCountMotorcycles(countMotorcycles - 1);
+			props.setIncomesMotorcyles(props.incomesMotorcycles + price);
 		}
 
 		setVehicles(vehicles.filter((_, i) => i !== index));
@@ -43,7 +44,7 @@ export default function ListVehicles() {
 					</tr>
 				</thead>
 				<tbody>
-					{vehicles.map((vehicle) => (
+					{vehicles.map(vehicle => (
 						<ItemListVehicles
 							vehicle={vehicle}
 							key={vehicle.vehicleID}
