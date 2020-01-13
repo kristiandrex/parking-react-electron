@@ -9,7 +9,7 @@ export default function ModalConfig(props) {
 
 		for (let index = 0; index < inputs.length; index++) {
 			if (inputs[index].value.trim() === "") {
-				return alert("Rellene todos los campos");
+				return props.showToast("Rellene todos los campos");
 			}
 		}
 
@@ -35,12 +35,9 @@ export default function ModalConfig(props) {
 								id="price_car"
 								name="price_car"
 								type="number"
-								defaultValue={props.config.priceCars}
+								defaultValue={props.config ? props.config.priceCars : ""}
 							/>
-							<label
-								htmlFor="price_car"
-								className={props.config.priceCars ? "active" : null}
-							>
+							<label htmlFor="price_car" className={props.config ? "active" : null}>
 								Precio automóvil
 							</label>
 						</div>
@@ -49,11 +46,11 @@ export default function ModalConfig(props) {
 								id="price_motorcycle"
 								name="price_motorcycle"
 								type="number"
-								defaultValue={props.config.priceMotorcycles}
+								defaultValue={props.config ? props.config.priceMotorcycles : ""}
 							/>
 							<label
 								htmlFor="price_motorcycle"
-								className={props.config.priceMotorcycles ? "active" : null}
+								className={props.config ? "active" : null}
 							>
 								Precio motocicleta
 							</label>
@@ -65,11 +62,11 @@ export default function ModalConfig(props) {
 								type="number"
 								id="required_time"
 								name="required_time"
-								defaultValue={props.config.requiredTime}
+								defaultValue={props.config ? props.config.requiredTime : ""}
 							/>
 							<label
 								htmlFor="required_time"
-								className={props.config.requiredTime ? "active" : null}
+								className={props.config ? "active" : null}
 							>
 								Tiempo mínimo
 							</label>
@@ -81,12 +78,9 @@ export default function ModalConfig(props) {
 								id="spaces_cars"
 								name="spaces_cars"
 								type="number"
-								defaultValue={props.config.spacesCars}
+								defaultValue={props.config ? props.config.spacesCars : ""}
 							/>
-							<label
-								htmlFor="spaces_cars"
-								className={props.config.spacesCars ? "active" : null}
-							>
+							<label htmlFor="spaces_cars" className={props.config ? "active" : null}>
 								Espacios automóvil
 							</label>
 						</div>
@@ -95,11 +89,11 @@ export default function ModalConfig(props) {
 								id="spaces_motorcycles"
 								name="spaces_motorcycles"
 								type="number"
-								defaultValue={props.config.spacesMotorcycles}
+								defaultValue={props.config ? props.config.spacesMotorcycles : ""}
 							/>
 							<label
 								htmlFor="spaces_motorcycles"
-								className={props.config.spacesMotorcycles ? "active" : null}
+								className={props.config ? "active" : null}
 							>
 								Espacios motocicleta
 							</label>

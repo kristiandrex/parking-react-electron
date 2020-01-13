@@ -1,0 +1,64 @@
+@import "~materialize-css/sass/components/normalize";
+@import "~materialize-css/sass/components/color-variables";
+@import "~materialize-css/sass/components/variables";
+@import "~materialize-css/sass/components/global";
+@import "~materialize-css/sass/components/grid";
+@import "~materialize-css/sass/components/modal";
+@import "~materialize-css/sass/components/forms/forms";
+@import "~materialize-css/sass/components/toast";
+@import "~materialize-css/sass/components/waves";
+@import "~materialize-css/sass/components/typography";
+@import "~materialize-css/sass/components/buttons";
+
+:root {
+	--primary: #3f51b5;
+	--light: #757de8;
+}
+
+html,
+body,
+#root,
+#App {
+	height: 100%;
+	overflow: hidden;
+}
+
+.input-field {
+	input {
+		color: #fff !important;
+		border-bottom-color: #fff !important;
+
+		&:focus {
+			box-shadow: 0 1px 0 0 #fff !important;
+		}
+	}
+
+	label {
+		color: #fff !important;
+	}
+
+	i {
+		color: #fff !important;
+	}
+}
+
+.btn,
+.btn-flat {
+	font-weight: bold;
+
+	&.white {
+		color: var(--primary);
+		background: #fff;
+	}
+
+	&.light {
+		background: var(--light);
+		color: #fff;
+	}
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}

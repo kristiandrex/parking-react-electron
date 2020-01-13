@@ -1,17 +1,18 @@
 .toast-container {
+	z-index: 1000;
 	position: absolute;
 	right: 1rem;
 	bottom: 1rem;
 	transition: all 0.3s ease;
+
+	&.hidden {
+		bottom: 3rem !important;
+		opacity: 0 !important;
+	}
 }
 
 .toast {
 	top: 0 !important;
 	margin: 0 !important;
 	background: var(--primary) !important;
-}
-
-.toast-container.hidden {
-	bottom: 3rem !important;
-	opacity: 0 !important;
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "../css/Sidebar.css";
+import "../styles/Sidebar.scss";
 import { GeneralContext } from "./App";
 import { findVehicle } from "../utils/utils";
 

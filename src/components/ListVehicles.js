@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import ItemListVehicles from "./ItemListVehicles";
 import { GeneralContext } from "./App";
 import { findVehicle } from "../utils/utils";
-import "../css/ListVehicles.css";
+import "../styles/ListVehicles.scss";
 
 export default function ListVehicles(props) {
 	const {

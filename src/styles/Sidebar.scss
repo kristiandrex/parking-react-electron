@@ -1,0 +1,52 @@
+:root {
+	--primary: #3f51b5;
+	--light: #757de8;
+}
+
+#sidebar {
+	background: var(--primary);
+	height: 100%;
+	padding: 1rem !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	overflow-y: auto;
+
+	input[type="radio"]:checked + label {
+		background: #fff;
+		color: var(--primary);
+	}
+
+	.btn-type {
+		margin: 0 1rem;
+		box-sizing: content-box;
+		background: var(--light);
+		color: #fff;
+		padding: 0.5rem 1.5rem;
+
+		i {
+			margin-right: 1rem;
+			vertical-align: bottom;
+		}
+	}
+
+	.required-time {
+		font-size: 0.8rem;
+		font-weight: bold;
+		color: #fff;
+	}
+
+	table.parking-spaces {
+		color: #fff;
+
+		tr {
+			border-bottom-color: #fff;
+
+			td {
+				width: 50%;
+				text-align: center;
+			}
+		}
+	}
+}

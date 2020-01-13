@@ -38,6 +38,7 @@ function App() {
 				setConfig={setConfig}
 				show={showConfig}
 				setShow={setShowConfig}
+				showToast={showToast}
 			/>
 			<ModalIncomes
 				show={showIncomes}

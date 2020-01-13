@@ -1,10 +1,10 @@
 import React from "react";
-import "../css/Toast.css";
+import "../styles/Toast.scss";
 
-export default function Toast(props) {
+export default function Toast({ show, message }) {
 	return (
-		<div className={props.show ? "toast-container" : "toast-container hidden"}>
-			<div className="toast">{props.message}</div>
+		<div className={show ? "toast-container" : "toast-container hidden"}>
+			<div className="toast">{message}</div>
 		</div>
 	);
 }
