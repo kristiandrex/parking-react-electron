@@ -1,9 +1,10 @@
 {
 	"name": "parking-react-electron",
-	"version": "0.3.0",
-	"main": "app/index.js",
+	"version": "1.0.0",
 	"author": "@kristiandrex",
+	"main": "./src/app.js",
 	"dependencies": {
+		"electron-is-dev": "^1.1.0",
 		"material-icons": "^0.3.1",
 		"materialize-css": "^1.0.0",
 		"react": "^16.12.0",
@@ -13,7 +14,20 @@
 		"start": "webpack-dev-server --mode development",
 		"build": "concurrently \"rimraf ./build\" \"webpack --mode production\"",
 		"electron-dev": "concurrently \"npm start\" \"electron .\"",
-		"lint": "eslint --color src/**/*.js"
+		"lint": "eslint src/**/*.js",
+		"pack": "npm run build && electron-builder --dir",
+		"dist": "npm run build && electron-builder"
+	},
+	"homepage": "./",
+	"build": {
+		"appId": "com.kristiandrex.parking-js",
+		"files": [
+			"./build/**/*",
+			"./src/app.js"
+		],
+		"directories": {
+			"buildResources": "assets"
+		}
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.7",
@@ -22,11 +36,9 @@
 		"babel-eslint": "^10.0.3",
 		"babel-loader": "^8.0.6",
 		"concurrently": "^5.0.2",
-		"cross-env": "^6.0.3",
 		"css-loader": "^3.4.2",
 		"electron": "^7.1.8",
 		"electron-builder": "^21.2.0",
-		"electron-is-dev": "^1.1.0",
 		"eslint": "^6.8.0",
 		"eslint-config-react": "^1.1.7",
 		"eslint-loader": "^3.0.3",
@@ -36,7 +48,6 @@
 		"node-sass": "^4.13.0",
 		"prettier": "1.19.1",
 		"rimraf": "^3.0.0",
-		"sass": "^1.24.4",
 		"sass-loader": "^8.0.1",
 		"style-loader": "^1.1.2",
 		"webpack": "^4.41.5",
