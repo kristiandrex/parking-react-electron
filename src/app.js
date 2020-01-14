@@ -9,7 +9,7 @@ app.on("ready", () => {
 		minHeight: 650,
 		minWidth: 1200,
 		webPreferences: {
-			devTools: true,
+			devTools: false,
 			nodeIntegration: true
 		}
 	});
@@ -19,4 +19,8 @@ app.on("ready", () => {
 	isDev
 		? window.loadURL("http://localhost:8080")
 		: window.loadFile(path.resolve(__dirname, "../build/index.html"));
+
+	window.on("closed", () => {
+		window = null;
+	});
 });
