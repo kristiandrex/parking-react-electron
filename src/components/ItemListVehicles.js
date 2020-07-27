@@ -1,54 +1,67 @@
-import React, { useEffect } from "react";
-import usePrice from "../hooks/usePrice";
-import useLocalStorage from "../hooks/useLocalStorage";
+import React, { useState, useEffect, memo } from "react";
+import { useDispatch } from "react-redux";
 
-export default function ItemListVehicles(props) {
-	const [{ seconds }, setSeconds] = useLocalStorage(props.vehicle.vehicleID, { seconds: 0 });
-	const minutes = parseInt(seconds / 60);
-	const hours = parseInt(minutes / 60);
+function ItemListVehicles({ vehicle, index }) {
+	const [minutes, setMinutes] = useState(vehicle.time.minutes);
+	const [hours, setHours] = useState(vehicle.time.hours);
 
-	const [price, setPrice] = usePrice(props.vehicle.type, minutes, hours);
+	const dispatch = useDispatch();
+
+	const handleRemoveVehicle = () => {
+		dispatch({
+			type: 'REMOVE_VEHICLE',
+			payload: index
+		});
+	};
 
 	useEffect(() => {
 		const timer = setInterval(() => {
-			setSeconds({ seconds: seconds + 1 });
-			setPrice(minutes, hours);
+			if (minutes === 59) {
+				setMinutes(0);
+				setHours((hours) => hours + 1);
+			}
+
+			else {
+				setMinutes(minutes + 1);
+			}
+
+			dispatch({
+				type: 'SET_TIME_VEHICLE',
+				payload: {
+					index,
+					time: {
+						minutes,
+						hours
+					}
+				}
+			});
 		}, 1000);
 
 		return () => clearInterval(timer);
-	}, [seconds]);
+	}, [minutes]);
 
 	return (
 		<tr>
-			<td className="type">
-				{props.vehicle.type === "CAR" ? (
-					<i className="material-icons">directions_car</i>
-				) : (
-					<i className="material-icons">motorcycle</i>
-				)}
+			<td className="category">
+				{
+					vehicle.category === "CAR"
+						? <i className="material-icons">directions_car</i>
+						: <i className="material-icons">motorcycle</i>
+				}
 			</td>
-			<td style={{ textTransform: "uppercase" }}>{props.vehicle.vehicleID}</td>
-			<td style={{ textTransform: "capitalize" }}>{props.vehicle.owner}</td>
-			<td>{props.vehicle.ownerID}</td>
-			<td>{props.vehicle.phone}</td>
+			<td>{vehicle.vehicleID}</td>
+			<td>{vehicle.owner}</td>
+			<td>{vehicle.ownerID}</td>
+			<td>{vehicle.phone}</td>
 			<td className="time">
-				{hours >= 10 ? hours : `0${hours}`}:
-				{minutes % 60 >= 10 ? minutes % 60 : `0${minutes % 60}`}:
-				{seconds % 60 >= 10 ? seconds % 60 : `0${seconds % 60}`}
+				{hours.toString().padStart(2, 0)}:{minutes.toString().padStart(2, 0)}
 			</td>
-			<td className="price">${price}</td>
+			<td className="price">${vehicle.price}</td>
 			<td>
-				<i
-					className="material-icons clear"
-					style={{ verticalAlign: "middle" }}
-					onClick={() => {
-						props.removeVehicle(props.vehicle.vehicleID, price);
-						localStorage.removeItem(props.vehicle.vehicleID);
-					}}
-				>
-					clear
-				</i>
+				<i className="material-icons clear" onClick={handleRemoveVehicle}>clear</i>
 			</td>
 		</tr>
 	);
 }
+
+export default memo(ItemListVehicles);

@@ -1,10 +1,12 @@
+"use strict"
+
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const isDev = require("electron-is-dev");
 
 let window;
 
-app.on("ready", () => {
+app.on("ready", async () => {
 	window = new BrowserWindow({
 		minHeight: 650,
 		minWidth: 1200,

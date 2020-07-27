@@ -1,17 +1,21 @@
-.modal-overlay {
-	top: 0 !important;
-	background: #fff !important;
-	display: flex !important;
+.custom-modal-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: var(--light);
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100% !important;
-}
+	height: 100%;
+	width: 100%;
+	z-index: 1;
 
-.modal {
-	display: block !important;
-	background: var(--primary) !important;
-	padding: 1rem !important;
-	border-radius: 1rem !important;
-	text-align: center;
-	color: #fff;
+	.custom-modal {
+		display: block !important;
+		background: #fff;
+		padding: 1rem !important;
+		border-radius: 1rem !important;
+		text-align: center;
+		color: var(--grey);
+	}
 }

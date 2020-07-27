@@ -4,21 +4,22 @@
 	"author": "kristiandrex",
 	"main": "./src/app.js",
 	"dependencies": {
-		"electron-is-dev": "^1.1.0",
+		"electron-is-dev": "^1.2.0",
 		"material-icons": "^0.3.1",
 		"materialize-css": "^1.0.0",
-		"react": "^16.12.0",
-		"react-dom": "^16.12.0"
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-redux": "^7.2.0",
+		"redux": "^4.0.5"
 	},
 	"scripts": {
 		"start": "webpack-dev-server --mode development",
 		"build": "concurrently \"rimraf ./build\" \"webpack --mode production\"",
-		"electron-dev": "concurrently \"npm start\" \"electron .\"",
+		"dev": "concurrently \"npm start\" \"electron .\"",
 		"lint": "eslint src/**/*.js",
 		"pack": "npm run build && electron-builder --dir",
 		"dist": "npm run build && electron-builder"
 	},
-	"homepage": "./",
 	"build": {
 		"appId": "com.kristiandrex.parking-js",
 		"productName": "ParkingJS",
@@ -34,28 +35,36 @@
 		}
 	},
 	"devDependencies": {
-		"@babel/core": "^7.7.7",
-		"@babel/preset-env": "^7.7.7",
-		"@babel/preset-react": "^7.7.4",
-		"babel-eslint": "^10.0.3",
-		"babel-loader": "^8.0.6",
-		"concurrently": "^5.0.2",
-		"css-loader": "^3.4.2",
-		"electron": "^7.1.8",
+		"@babel/core": "^7.10.5",
+		"@babel/preset-env": "^7.10.4",
+		"@babel/preset-react": "^7.10.4",
+		"babel-eslint": "^10.1.0",
+		"babel-loader": "^8.1.0",
+		"concurrently": "^5.2.0",
+		"css-loader": "^3.6.0",
+		"electron": "^7.3.2",
 		"electron-builder": "^21.2.0",
-		"eslint": "^6.8.0",
-		"eslint-config-react": "^1.1.7",
-		"eslint-loader": "^3.0.3",
-		"eslint-plugin-react": "^7.17.0",
-		"file-loader": "^5.0.2",
+		"eslint": "^7.5.0",
+		"eslint-loader": "^3.0.4",
+		"eslint-plugin-react": "^7.20.3",
+		"eslint-plugin-react-hooks": "^4.0.8",
+		"file-loader": "^5.1.0",
 		"html-webpack-plugin": "^3.2.0",
-		"node-sass": "^4.13.0",
-		"prettier": "1.19.1",
-		"rimraf": "^3.0.0",
-		"sass-loader": "^8.0.1",
-		"style-loader": "^1.1.2",
-		"webpack": "^4.41.5",
-		"webpack-cli": "^3.3.10",
-		"webpack-dev-server": "^3.10.1"
-	}
+		"node-sass": "^4.14.1",
+		"rimraf": "^3.0.2",
+		"sass-loader": "^8.0.2",
+		"style-loader": "^1.2.1",
+		"webpack": "^4.43.0",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "^3.11.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kristiandrex/parking-react-electron.git"
+	},
+	"bugs": {
+		"url": "https://github.com/kristiandrex/parking-react-electron/issues"
+	},
+	"homepage": "https://github.com/kristiandrex/parking-react-electron#readme",
+	"description": "Registro para parqueadero hecho con React y Electron."
 }

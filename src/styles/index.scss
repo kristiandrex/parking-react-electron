@@ -12,7 +12,9 @@
 
 :root {
 	--primary: #3f51b5;
-	--light: #757de8;
+	--secondary: #757de8;
+	--grey: #212121;
+	--light: #fafafa;
 }
 
 html,
@@ -23,28 +25,18 @@ body,
 	overflow: hidden;
 }
 
-.input-field {
-	input {
-		color: #fff !important;
-		border-bottom-color: #fff !important;
-
-		&:focus {
-			box-shadow: 0 1px 0 0 #fff !important;
-		}
-	}
-
-	label {
-		color: #fff !important;
-	}
-
-	i {
-		color: #fff !important;
-	}
+.material-icons {
+	vertical-align: middle;
 }
 
 .btn,
 .btn-flat {
 	font-weight: bold;
+
+	&.primary {
+		color: #fff;
+		background: var(--primary);
+	}
 
 	&.white {
 		color: var(--primary);
@@ -52,7 +44,7 @@ body,
 	}
 
 	&.light {
-		background: var(--light);
+		background: var(--secondary);
 		color: #fff;
 	}
 }
