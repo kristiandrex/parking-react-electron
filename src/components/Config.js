@@ -1,14 +1,21 @@
-import React from "react";
-import Modal from "./Modal";
-import { useSelector, useDispatch } from "react-redux";
-import "../styles/Config.scss";
+import React from 'react';
+import Modal from './Modal';
+import { useSelector, useDispatch } from 'react-redux';
+import '../styles/Config.scss';
 
 export default function Config() {
-	const state = useSelector((state) => state);
+	const { config, count } = useSelector((state) => state);
 	const dispatch = useDispatch();
 
 	const handleSaveConfig = (event) => {
 		event.preventDefault();
+
+		const spacesCars = Number(event.target.spacesCars.value);
+		const spacesMotorcycles = Number(event.target.spacesMotorcycles.value);
+
+		if (spacesCars < count.cars || spacesMotorcycles < count.motorcycles) {
+			return alert('Hay más vehículos parqueados');
+		}
 
 		const config = {
 			show: false,
@@ -17,8 +24,8 @@ export default function Config() {
 				motorcycles: Number(event.target.priceMotorcycles.value)
 			},
 			spaces: {
-				cars: Number(event.target.spacesCars.value),
-				motorcycles: Number(event.target.spacesMotorcycles.value)
+				cars: spacesCars,
+				motorcycles: spacesMotorcycles
 			},
 			time: Number(event.target.time.value)
 		};
@@ -29,62 +36,58 @@ export default function Config() {
 		});
 	};
 
-	const handleHideConfig = () => {
-		dispatch({ type: 'HIDE_CONFIG' });
-	}
-
-	if (!state.config.show) {
+	if (!config.show) {
 		return null;
 	}
 
 	return (
 		<Modal>
-			<form onSubmit={handleSaveConfig} className="config">
-				<div className="row">
+			<form onSubmit={handleSaveConfig} className='config'>
+				<div className='row'>
 					<p>Precio</p>
-					<div className="input-field col s6">
+					<div className='input-field col s6'>
 						<input
-							name="priceCars"
-							type="number"
-							defaultValue={state.config.price.cars}
+							name='priceCars'
+							type='number'
+							defaultValue={config.price.cars}
 						/>
 					</div>
-					<div className="input-field col s6">
+					<div className='input-field col s6'>
 						<input
-							name="priceMotorcycles"
-							type="number"
-							defaultValue={state.config.price.motorcycles}
+							name='priceMotorcycles'
+							type='number'
+							defaultValue={config.price.motorcycles}
 						/>
 					</div>
 				</div>
-				<div className="row">
+				<div className='row'>
 					<p>Espacio</p>
-					<div className="input-field col s6">
+					<div className='input-field col s6'>
 						<input
-							name="spacesCars"
-							type="number"
-							defaultValue={state.config.spaces.cars}
+							name='spacesCars'
+							type='number'
+							defaultValue={config.spaces.cars}
 						/>
 					</div>
-					<div className="input-field col s6">
+					<div className='input-field col s6'>
 						<input
-							name="spacesMotorcycles"
-							type="number"
-							defaultValue={state.config.spaces.motorcycles}
+							name='spacesMotorcycles'
+							type='number'
+							defaultValue={config.spaces.motorcycles}
 						/>
 					</div>
 				</div>
-				<div className="row">
+				<div className='row'>
 					<p>Tiempo mínimo</p>
-					<div className="input-field col s6 push-s3">
+					<div className='input-field col s6 push-s3'>
 						<input
-							type="number"
-							name="time"
-							defaultValue={state.config.time}
+							type='number'
+							name='time'
+							defaultValue={config.time}
 						/>
 					</div>
 				</div>
-				<button className="btn primary" onClick={handleHideConfig}>
+				<button type='submit' className='btn primary'>
 					Guardar
 				</button>
 			</form>

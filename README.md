@@ -14,4 +14,4 @@ Registro para parqueadero hecho con React y Electron.
 -   Mide el tiempo y calcula el precio para cada vehículo.
 -   Muestra los espacios de parqueo disponibles.
 -   Almacena el total de recaudo.
--   Incluye interfaz de configuración
+-   Incluye interfaz de configuración.

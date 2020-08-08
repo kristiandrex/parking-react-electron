@@ -1,6 +1,6 @@
-import React from "react";
-import Modal from "./Modal";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import Modal from './Modal';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/Incomes.scss';
 
 export default function Incomes() {
@@ -17,8 +17,8 @@ export default function Incomes() {
 
     return (
         <Modal>
-            <div className="incomes">
-                <table className="centered">
+            <div className='incomes'>
+                <table className='centered'>
                     <thead>
                         <tr>
                             <th>Automóviles</th>
@@ -34,8 +34,8 @@ export default function Incomes() {
                         </tr>
                     </tbody>
                 </table>
-                <button type="button" className="btn primary" onClick={handleClose}>
-                    <i className="material-icons">clear</i>
+                <button type='button' className='btn primary' onClick={handleClose}>
+                    <i className='material-icons'>clear</i>
                 </button>
             </div>
         </Modal>

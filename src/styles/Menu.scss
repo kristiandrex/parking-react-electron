@@ -1,4 +1,4 @@
-#sidebar {
+#menu {
 	background: var(--primary);
 	height: 100%;
 	padding: 1rem !important;
@@ -14,12 +14,12 @@
 		.btn-group-category {
 			padding-bottom: 1rem;
 
-			.input-category:checked + .btn-category {
+			input:checked + label {
 				background: #fff;
 				color: var(--primary);
 			}
 		
-			.btn-category {
+			label {
 				margin: 0 1rem;
 				box-sizing: content-box;
 				background: var(--secondary);

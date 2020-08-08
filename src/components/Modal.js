@@ -1,10 +1,10 @@
-import React from "react";
-import "../styles/Modal.scss";
+import React from 'react';
+import '../styles/Modal.scss';
 
 export default function Modal({ children }) {
 	return (
-		<div className="custom-modal-overlay">
-			<div className="custom-modal z-depth-1">
+		<div className='custom-modal-overlay'>
+			<div className='custom-modal z-depth-1'>
 				{children}
 			</div>
 		</div>

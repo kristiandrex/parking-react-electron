@@ -1,16 +1,16 @@
-import React from "react";
-import Sidebar from "./Sidebar";
-import ListVehicles from "./ListVehicles";
-import { Provider } from "react-redux";
+import React from 'react';
+import Menu from './Menu';
+import ListVehicles from './ListVehicles';
+import { Provider } from 'react-redux';
 import store from '../redux/store';
-import Config from "./Config";
-import Incomes from "./Incomes";
+import Config from './Config';
+import Incomes from './Incomes';
 
 export default function App() {
 	return (
-		<div id="App" className="row">
+		<div id='App' className='row'>
 			<Provider store={store}>
-				<Sidebar />
+				<Menu />
 				<ListVehicles />
 				<Config/>
 				<Incomes/>

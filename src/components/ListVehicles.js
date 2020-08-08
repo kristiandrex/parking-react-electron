@@ -1,34 +1,34 @@
-import React from "react";
-import ItemListVehicles from "./ItemListVehicles";
-import { useSelector } from "react-redux";
-import "../styles/ListVehicles.scss";
+import React from 'react';
+import ItemListVehicles from './ItemListVehicles';
+import { useSelector } from 'react-redux';
+import '../styles/ListVehicles.scss';
 
 export default function ListVehicles() {
 	const vehicles = useSelector((state) => state.vehicles);
 
 	return (
-		<div id="list-vehicles" className="col s9">
+		<div id='list-vehicles' className='col s9'>
 			<table>
 				<thead>
 					<tr>
 						<th></th>
 						<th>
-							<span className="material-icons">money</span>
+							<span className='material-icons'>money</span>
 						</th>
 						<th>
-							<span className="material-icons">person</span>
+							<span className='material-icons'>person</span>
 						</th>
 						<th>
-							<span className="material-icons">fingerprint</span>
+							<span className='material-icons'>fingerprint</span>
 						</th>
 						<th>
-							<span className="material-icons">phone</span>
+							<span className='material-icons'>phone</span>
 						</th>
 						<th>
-							<span className="material-icons">schedule</span>
+							<span className='material-icons'>schedule</span>
 						</th>
 						<th>
-							<span className="material-icons">attach_money</span>
+							<span className='material-icons'>attach_money</span>
 						</th>
 						<th></th>
 					</tr>
