@@ -1,12 +1,13 @@
-import { createStore } from 'redux';
-import reducers from './reducers'
-import { saveState, loadState } from '../utils/localStorage';
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import reducers from "./reducers"
+import { saveState, loadState } from "../utils/localStorage";
 
-const store = createStore(
-    reducers,
-    loadState(),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducers, loadState(), composeEnhancers(
+    applyMiddleware(thunk)
+));
 
 store.subscribe(() => {
     saveState(store.getState());

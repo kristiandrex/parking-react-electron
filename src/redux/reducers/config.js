@@ -1,3 +1,5 @@
+import { SET_CONFIG, SHOW_CONFIG } from "../types";
+
 const initialState = {
     show: false,
     price: {
@@ -13,21 +15,14 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case 'SET_CONFIG': {
+        case SET_CONFIG: {
             return action.payload;
         }
 
-        case 'SHOW_CONFIG': {
+        case SHOW_CONFIG: {
             return {
                 ...state,
                 show: true
-            };
-        }
-
-        case 'HIDE_CONFIG': {
-            return {
-                ...state,
-                show: false
             };
         }
 

@@ -1,3 +1,10 @@
+import {
+    ADD_COUNT_CARS,
+    ADD_COUNT_MOTORCYCLES,
+    REMOVE_COUNT_CARS,
+    REMOVE_COUNT_MOTORCYLES
+} from "../types";
+
 const initialState = {
     cars: 0,
     motorcycles: 0
@@ -5,31 +12,31 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case 'ADD_COUNT_CARS': {
+        case ADD_COUNT_CARS: {
             return {
                 ...state,
                 cars: state.cars + 1
             }
         }
 
-        case 'ADD_COUNT_MOTORCYCLES': {
+        case ADD_COUNT_MOTORCYCLES: {
             return {
                 ...state,
-                cars: state.motorcycles + 1
+                motorcycles: state.motorcycles + 1
             }
         }
 
-        case 'REMOVE_COUNT_CARS': {
+        case REMOVE_COUNT_CARS: {
             return {
                 ...state,
                 cars: state.cars - 1
             }
         }
 
-        case 'REMOVE_COUNT_MOTORCYCLES': {
+        case REMOVE_COUNT_MOTORCYLES: {
             return {
                 ...state,
-                cars: state.motorcycles - 1
+                motorcycles: state.motorcycles - 1
             }
         }
 

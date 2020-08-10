@@ -26,11 +26,11 @@
         "no-unused-vars": "warn",
         "quotes": [
             "warn",
-            "single"
+            "double"
         ],
         "jsx-quotes": [
             "warn",
-            "prefer-single"
+            "prefer-double"
         ]
     },
     "settings": {

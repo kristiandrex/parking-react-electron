@@ -11,11 +11,12 @@
 	z-index: 1;
 
 	.custom-modal {
-		display: block !important;
+		display: block;
 		background: #fff;
-		padding: 1rem !important;
-		border-radius: 1rem !important;
+		padding: 1rem;
+		border-radius: 1rem;
 		text-align: center;
 		color: var(--grey);
+		max-height: 100%;
 	}
 }

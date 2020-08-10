@@ -1,7 +1,8 @@
-import React from 'react';
-import Modal from './Modal';
-import { useSelector, useDispatch } from 'react-redux';
-import '../styles/Config.scss';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Modal from "../Modal/Modal";
+import { SET_CONFIG } from "../../redux/types";
+import "./Config.scss";
 
 export default function Config() {
 	const { config, count } = useSelector((state) => state);
@@ -14,7 +15,7 @@ export default function Config() {
 		const spacesMotorcycles = Number(event.target.spacesMotorcycles.value);
 
 		if (spacesCars < count.cars || spacesMotorcycles < count.motorcycles) {
-			return alert('Hay más vehículos parqueados');
+			return alert("Hay más vehículos parqueados");
 		}
 
 		const config = {
@@ -31,7 +32,7 @@ export default function Config() {
 		};
 
 		dispatch({
-			type: 'SET_CONFIG',
+			type: SET_CONFIG,
 			payload: config
 		});
 	};
@@ -42,52 +43,52 @@ export default function Config() {
 
 	return (
 		<Modal>
-			<form onSubmit={handleSaveConfig} className='config'>
-				<div className='row'>
+			<form onSubmit={handleSaveConfig} className="config">
+				<div className="row">
 					<p>Precio</p>
-					<div className='input-field col s6'>
+					<div className="input-field col s6">
 						<input
-							name='priceCars'
-							type='number'
+							name="priceCars"
+							type="number"
 							defaultValue={config.price.cars}
 						/>
 					</div>
-					<div className='input-field col s6'>
+					<div className="input-field col s6">
 						<input
-							name='priceMotorcycles'
-							type='number'
+							name="priceMotorcycles"
+							type="number"
 							defaultValue={config.price.motorcycles}
 						/>
 					</div>
 				</div>
-				<div className='row'>
+				<div className="row">
 					<p>Espacio</p>
-					<div className='input-field col s6'>
+					<div className="input-field col s6">
 						<input
-							name='spacesCars'
-							type='number'
+							name="spacesCars"
+							type="number"
 							defaultValue={config.spaces.cars}
 						/>
 					</div>
-					<div className='input-field col s6'>
+					<div className="input-field col s6">
 						<input
-							name='spacesMotorcycles'
-							type='number'
+							name="spacesMotorcycles"
+							type="number"
 							defaultValue={config.spaces.motorcycles}
 						/>
 					</div>
 				</div>
-				<div className='row'>
+				<div className="row">
 					<p>Tiempo mínimo</p>
-					<div className='input-field col s6 push-s3'>
+					<div className="input-field col s6 push-s3">
 						<input
-							type='number'
-							name='time'
+							type="number"
+							name="time"
 							defaultValue={config.time}
 						/>
 					</div>
 				</div>
-				<button type='submit' className='btn primary'>
+				<button type="submit" className="btn primary">
 					Guardar
 				</button>
 			</form>

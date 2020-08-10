@@ -1,0 +1,23 @@
+.custom-modal {
+    width: 80%;
+}
+
+.history {
+    .container {
+        display: flex;
+        max-width: unset;
+
+        .list {
+            width: 60%;
+        }
+
+        .incomes {
+            width: 40%;
+        }
+    }
+
+    table caption {
+        font-weight: bold;
+        padding: 1rem;
+    }
+}

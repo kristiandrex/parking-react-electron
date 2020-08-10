@@ -1,9 +1,9 @@
-import store from '../redux/store';
+import store from "../redux/store";
 
 export default function getPrice(time, category) {
     const config = store.getState().config;
 
-    const price = category === 'CAR'
+    const price = category === "CAR"
         ? config.price.cars
         : config.price.motorcycles;
 
