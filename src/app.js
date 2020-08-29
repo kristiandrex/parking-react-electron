@@ -12,7 +12,7 @@ app.on("ready", () => {
 		minHeight: 650,
 		minWidth: 1200,
 		webPreferences: {
-			// devTools: false,
+			devTools: false,
 			nodeIntegration: true
 		}
 	});

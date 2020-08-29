@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
 import ItemListHistory from "./ItemListHistory";
@@ -16,9 +16,7 @@ export default function History() {
         />
     );
 
-    const handleClose = () => {
-        dispatch({ type: HIDE_HISTORY });
-    };
+    const handleClose = useCallback(() => dispatch({ type: HIDE_HISTORY }), [dispatch]);
 
     if (!history.show) {
         return null;
@@ -27,7 +25,7 @@ export default function History() {
     return (
         <Modal>
             <div className="history">
-                <div className="container">
+                <div className="vehicles">
                     <table className="centered">
                         <caption>Historial</caption>
                         <thead>
@@ -42,27 +40,34 @@ export default function History() {
                             {list}
                         </tbody>
                     </table>
-                    <table className="centered incomes">
-                        <caption>Ingresos</caption>
-                        <thead>
-                            <tr>
-                                <th>Automóviles</th>
-                                <th>Motocicletas</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>${history.cars}</td>
-                                <td>${history.motorcycles}</td>
-                                <td>${history.cars + history.motorcycles}</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
-                <button type="button" className="btn primary" onClick={handleClose}>
-                    Cerrar
-                </button>
+                <table className="centered incomes">
+                    <caption>Ingresos</caption>
+                    <tbody>
+                        <tr>
+                            <th>Automóviles</th>
+                            <td>${history.cars}</td>
+                        </tr>
+                        <tr>
+                            <th>Motocicletas</th>
+                            <td>${history.motorcycles}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <td>${history.cars + history.motorcycles}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table className="incomes"></table>
+                <div className="button border-top">
+                    <button
+                        className="btn primary"
+                        onClick={handleClose}
+                        type="button"
+                    >
+                        Cerrar
+                    </button>
+                </div>
             </div>
         </Modal>
     );

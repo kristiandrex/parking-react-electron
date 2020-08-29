@@ -1,6 +1,6 @@
 {
 	"name": "parking-react-electron",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"author": "kristiandrex",
 	"main": "./src/app.js",
 	"dependencies": {
@@ -16,7 +16,7 @@
 	"scripts": {
 		"dev": "webpack-dev-server --mode development",
 		"build": "concurrently \"rimraf ./build\" \"npm run lint\" \"webpack --mode production\"",
-		"dev-electron": "concurrently \"npm start\" \"electron .\"",
+		"start": "concurrently \"npm start\" \"electron .\"",
 		"lint": "eslint . --fix",
 		"pack": "npm run build && electron-builder --dir",
 		"dist": "npm run build && electron-builder"
@@ -29,7 +29,7 @@
 			"./src/app.js"
 		],
 		"directories": {
-			"buildResources": "assets"
+			"buildResources": "./assets"
 		},
 		"win": {
 			"target": "portable"
